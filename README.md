@@ -79,6 +79,6 @@ Update this README and make any other initial changes or 🌱 files, etc. Go ahe
 
 
 #**User Flow** Service application<br>
-![Alt](SiteFlowChar.png)
+![Alt](FlowChartDiagram.png)
 
 #**Wire frames**
