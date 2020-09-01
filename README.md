@@ -23,3 +23,18 @@ Now, enter `code .` to open this project in VS Code, and look for a prompt to 'i
 Update this README and make any other initial changes or 🌱 files, etc. Go ahead and do your usual `git` steps, etc. etc. etc.
 
 **Note:** This is a template repository, no need to 'fork it.
+
+
+**Create ... Week 1: Homework Documentation for capstone project**
+----------------------------------------
+>1. If you have not done so yet – create an account for yourself on [I'm a link to a web page!](www.github.com) (name should be professional).<br>
+>2. Create your capstone repo (in a new folder) and add a **docs** folder.<br>
+>3. Create a docs folder, add documentation in the form of markdown, images or PDFs.<br>
+>4. Update your **README.md** file to link to your new project documentation.<br>
+>5. **Your documentation should include..**<br>
+  >>1. Definition of your audience (We already did this,correct?)<br>
+  >>2. Definition statement (I want to create a web application that...) for your project<br>
+  >>3. High level story (**elevator pitch**)<br>
+  >>4. Outline of the content<br>
+  >>5. User Flow<br>
+  >>6. Wire frames (_1 wire frame per page minimum, hand-drawn is OK!_)
