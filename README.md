@@ -82,3 +82,4 @@ Update this README and make any other initial changes or 🌱 files, etc. Go ahe
 ![Alt](FlowChartDiagram.png)
 
 #**Wire frames**
+![Alt](WireframeDiagram.png)
