@@ -87,4 +87,5 @@ Update this README and make any other initial changes or 🌱 files, etc. Go ahe
 ![Alt](WireframeDiagram.png)
 ![Alt](Wireframepage1Diagram.png)
 ![Alt](Wireframepage2Diagram.png)
+![Alt](Wireframepage3Diagram.png)
 
