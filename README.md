@@ -83,3 +83,6 @@ Update this README and make any other initial changes or 🌱 files, etc. Go ahe
 
 #**Wire frames**
 ![Alt](WireframeDiagram.png)
+![Alt](Wireframepage1Diagram.png)
+
+
