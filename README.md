@@ -53,7 +53,6 @@
 >>Terms & Conditions, Privacy, E-mail
 
 
-#**User Flow** Service application<br>
-![Alt](FlowChartDiagram.png)
+#**[User Flow](Docs/Flowcharts)**
 
 #**[Wire frames](Docs/Wireframes)**
