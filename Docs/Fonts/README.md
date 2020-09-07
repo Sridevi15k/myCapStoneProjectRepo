@@ -1,8 +1,8 @@
 #**Font Images**
 
 
-#**![Arial](Images/Arial.png)** <br>
-#**![Helvetica](Images/Helvetica.png)**<br>
-#**![HelveticaNeue](Images/HelveticaNeue.png)**<br>
-#**![SanSerif](Images/SanSerif.png)**<br>
+#**![Image: Arial](Images/Arial.png)** <br><br>
+#**![Image: Helvetica](Images/Helvetica.png)**<br><br>
+#**![Image: HelveticaNeue](Images/HelveticaNeue.png)**<br><br>
+#**![Image: SanSerif](Images/SanSerif.png)**<br>
 
