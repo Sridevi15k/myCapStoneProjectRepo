@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-
   "scripts": {
     "parcel-build": "parcel build index.html && cp _redirects ./dist/",
     "serve": "parcel index.html"
@@ -24,9 +23,14 @@
     "stylelint-vscode": "^7.0.0-6"
   },
   "dependencies": {
+    "axios": "^0.20.0",
+    "dotenv": "^8.2.0",
     "lodash": "^4.17.20",
+    "lodash-id": "^0.14.0",
+    "lowdb": "^1.0.0",
     "navigo": "^7.1.2",
     "node": "^14.13.0",
+    "save-dev": "0.0.1-security",
     "store": "^2.0.12"
   }
 }
