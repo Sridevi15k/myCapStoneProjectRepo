@@ -1,4 +1,4 @@
 export default {
-  header: "Warranty Reminder",
+  header: "Round the clock",
   view: "Home"
 };

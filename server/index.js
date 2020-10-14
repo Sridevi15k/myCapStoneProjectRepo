@@ -8,7 +8,7 @@ const http = require("http");
 const PORT = 4040;
 
 const server = http.createServer((request, response) => {
-  if (request.url.startsWith("/posts")) {
+  if (request.url.startsWith("/signup")) {
     // use the request method to access the corresponding handler
     const handler = HANDLERS[request.method];
 
@@ -50,11 +50,11 @@ const HANDLERS = {
     request.on("error", () => internalServerError(response));
   },
   GET(request, response) {
-    const posts = db.get("posts");
+    const signup = db.get("signup");
 
-    if (request.url === "/posts") {
+    if (request.url === "/signup") {
       // only send back the entire collection when the URL matches /posts exactly
-      ok(response, { posts: posts.value() });
+      ok(response, { signup: signup.value() });
     } else {
       // otherwise, split up the url by '/' to try to find a post ID
       const parts = request.url.split("/");
@@ -62,7 +62,7 @@ const HANDLERS = {
       // TODO: explore better ways to do this!
       if (parts.length === 3) {
         const id = parts.pop();
-        const post = posts.getById(id).value();
+        const post = signup.getById(id).value();
 
         // if a post exists with that ID,
         if (post) {
@@ -91,7 +91,7 @@ const HANDLERS = {
 
         // updateById returns a post only if one already exists with that ID
         const post = db
-          .get("posts")
+          .get("signup")
           .updateById(id, { body: contents })
           .write();
 
@@ -114,7 +114,7 @@ const HANDLERS = {
       const id = parts.pop();
       // like updateById, removeById will only return a post if a post exists with that ID
       const post = db
-        .get("posts")
+        .get("signup")
         .removeById(id)
         .write();
 

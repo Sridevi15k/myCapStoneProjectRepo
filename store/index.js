@@ -8,3 +8,4 @@ export { default as Faq } from "./Faq";
 export { default as Login } from "./Login";
 export { default as Search } from "./Search";
 export { default as Features } from "./Features";
+export { default as Logo } from "./Logo";

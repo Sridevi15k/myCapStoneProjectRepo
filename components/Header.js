@@ -8,4 +8,4 @@ export default st => `
   <header id="Mainheading">
       <h1>${st.header}</h1>
     </header>
-    `;
+  `;

@@ -52,9 +52,9 @@ const router = new Navigo(window.location.origin);
 
 function render(st = state.Home) {
   document.querySelector("#root").innerHTML = `
+${Navtop(state.Toplinks)}
 ${Header(st)}
 ${Nav(state.Links)}
-${Navtop(state.Toplinks)}
 ${Main(st)}
 ${Footer()}
 `;
