@@ -1,4 +1,4 @@
 export default {
-  header: "Round the clock",
+  header: "",
   view: "Home"
 };

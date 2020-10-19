@@ -27,5 +27,5 @@ export default () => `
   </footer>
   `;
 /*<footer>
-    &copy; 2020 <a href="https://savvycoders.com/"C>Savvy oders</a>
+    &copy; 2020 <a href="https://savvycoders.com/"C>SavvyCoders</a>
   </footer>*/

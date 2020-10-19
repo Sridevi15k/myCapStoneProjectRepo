@@ -4,7 +4,7 @@ import { capitalize } from "lodash";
 //import * as components from "./components";
 import * as state from "./store";
 // importing all by name
-import { Header, Nav, Navtop, Main, Footer } from "./components";
+import { Header, Nav, NavTop, Main, Footer } from "./components";
 import axios from "axios";
 import "./env";
 
@@ -52,7 +52,7 @@ const router = new Navigo(window.location.origin);
 
 function render(st = state.Home) {
   document.querySelector("#root").innerHTML = `
-${Navtop(state.Toplinks)}
+${NavTop(state.Toplinks)}
 ${Header(st)}
 ${Nav(state.Links)}
 ${Main(st)}
@@ -82,7 +82,7 @@ function addNavEventListeners() {
 }
 
 document.querySelector("form").addEventListener("submit", event => {
-  event.preventDefault();
+  // event.preventDefault();
   Array.from(event.target.elements).forEach(el => {
     console.log("Input Type: ", el.type);
     console.log("Name: ", el.name);

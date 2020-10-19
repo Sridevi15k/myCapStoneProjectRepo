@@ -9,3 +9,4 @@ export { default as Search } from "./Search";
 export { default as Features } from "./Features";
 export { default as Register } from "./Register";
 export { default as Logo } from "./Logo";
+export { default as Blog } from "./Blog";
