@@ -52,7 +52,6 @@ const router = new Navigo(window.location.origin);
 
 function render(st = state.Home) {
   document.querySelector("#root").innerHTML = `
-${NavTop(state.Toplinks)}
 ${Header(st)}
 ${Nav(state.Links)}
 ${Main(st)}
