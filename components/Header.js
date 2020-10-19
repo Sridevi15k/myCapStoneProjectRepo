@@ -6,6 +6,6 @@
 
 export default st => `
   <header id="Mainheading">
-      <h1>${st.header}</h1>
-    </header>
+      <h2 class="nomargin">Warranty Reminder..right on time!!</h2>
+      </header>
   `;

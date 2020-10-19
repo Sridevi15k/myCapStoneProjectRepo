@@ -1,6 +1,6 @@
 export default () => `
 <section id="features">
-Features
+<h3>Features<h3>
 
 <ul>
 <li> Need to know </li>

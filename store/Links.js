@@ -4,5 +4,6 @@ export default [
   { title: "Contact", text: "Contact", icon: "fa-envelope" },
   { title: "Features", text: "Features", icon: "fa-list-alt" },
   { title: "Faq", text: "Faq", icon: "fa-question-circle" },
-  { title: "Register", text: "Register", icon: "" }
+  { title: "Register", text: "Register", icon: "" },
+  { title: "Blog", text: "Blog" }
 ];

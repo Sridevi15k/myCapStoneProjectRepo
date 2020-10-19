@@ -2,7 +2,6 @@ import Toplinks from "../store/Toplinks";
 
 export default links => `
 <nav class="topnav">
-<i class="fas fa-bars"></i>
     <ul class="hidden--mobile nav-links">
     ${Toplinks.map(
       link =>
