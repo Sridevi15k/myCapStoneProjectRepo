@@ -6,6 +6,6 @@
 
 export default st => `
   <header id="Mainheading">
-      <h2 class="nomargin">Warranty Reminder..right on time!!</h2>
+      <img id="logo" src="https://github.com/Sridevi15k/myCapStoneProjectRepo/blob/master/Docs/WebsiteImages/logo.png?raw=true" alt="Warranty logo";
       </header>
   `;

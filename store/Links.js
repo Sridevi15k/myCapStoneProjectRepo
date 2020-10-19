@@ -5,5 +5,6 @@ export default [
   { title: "Features", text: "Features", icon: "fa-list-alt" },
   { title: "Faq", text: "Faq", icon: "fa-question-circle" },
   { title: "Register", text: "Register", icon: "" },
-  { title: "Blog", text: "Blog" }
+  { title: "Login", text: "Login", icon: "" },
+  { title: "Search", text: "Search", icon: "" }
 ];
