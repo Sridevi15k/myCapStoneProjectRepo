@@ -9,14 +9,10 @@ export default () => `
     </div>
 
     <div class="option">
-      <h4></h4>
-      <p>
-
-      </p>
+    <img src="https://github.com/Sridevi15k/myCapStoneProjectRepo/blob/master/Docs/WebsiteImages/Sand%20timer.jpg?raw=true" alt="sand timer">
     </div>
 
     <div class="option">
-      <h4></h4>
       <i class="far fa-copyright"></i>
       Warranty Reminder 2020 |
       <a href="#"> Terms & Conditions </a>|
