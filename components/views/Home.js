@@ -16,11 +16,8 @@ export default () => `
   </div>
   <div class="side-bar">
   <img src="https://github.com/Sridevi15k/myCapStoneProjectRepo/blob/master/Docs/WebsiteImages/Website%20image%20rainbow.jpg?raw=true" alt="home image">
-  <img src="https://github.com/Sridevi15k/myCapStoneProjectRepo/blob/master/Docs/WebsiteImages/Website%20image%20rainbow.jpg?raw=true" alt="home image">
-      </form>
-      </div>
-
-
   </div>
+</form>
+      </div>
   </section>
   `;
