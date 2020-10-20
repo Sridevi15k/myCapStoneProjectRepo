@@ -127,12 +127,10 @@ nav .active {
 .side-bar {
   flex: 1;
   order: 3;
-  padding: 20px;
+  padding: 10px;
 }
-
-
 .side-bar img {
-  height: 250px;
+  height: 400px;
   width: 300px;
 }
 
