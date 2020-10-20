@@ -15,24 +15,8 @@ export default () => `
     </ul>
   </div>
   <div class="side-bar">
-    <h3>Register/Login</h3>
-    <div class="container1">
-      <form id="register" method="POST" action="">
-        <div class="form-box">
-          <label for="username">Username:</label>
-          <input type="text" name="username" id="username" placeholder="Enter Your Username">
-        </div>
-        <div class="form-box">
-          <label for="password">Password:</label>
-          <input type="password" name="password" id="password">
-        </div>
-        <div class="form-box">
-          <label for="email">Email:</label>
-          <input type="email" name="email" id="email" placeholder="your@email.here">
-        </div>
-        <input type="submit" name="Login" value="Login"><br><br>
-        <input type="submit" name="register" value="Register">
-        Not a member?
+  <img src="https://github.com/Sridevi15k/myCapStoneProjectRepo/blob/master/Docs/WebsiteImages/Website%20image%20rainbow.jpg?raw=true" alt="home image">
+  <img src="https://github.com/Sridevi15k/myCapStoneProjectRepo/blob/master/Docs/WebsiteImages/Website%20image%20rainbow.jpg?raw=true" alt="home image">
       </form>
       </div>
 
