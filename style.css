@@ -129,6 +129,10 @@ nav .active {
   order: 3;
   padding: 20px;
 }
+.side-bar img {
+  height: 250px;
+  width: 300px;
+}
 @media (min-width: 900px) {
   .content-layout {
     display: flex;
