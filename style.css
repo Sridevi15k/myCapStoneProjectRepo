@@ -129,10 +129,14 @@ nav .active {
   order: 3;
   padding: 20px;
 }
+
+
 .side-bar img {
   height: 250px;
   width: 300px;
 }
+
+
 @media (min-width: 900px) {
   .content-layout {
     display: flex;
@@ -140,8 +144,8 @@ nav .active {
   }
 }
 .side-bar:nth-child(1) {background-color: #e07a5f;}
-.side-bar:nth-child(2) {background-color: #cdf1c3;}
-.side-bar:nth-child(3) {background-color: #81b29a;}
+.side-bar:nth-child(2) {background-color: #81b29a;}
+.side-bar:nth-child(3) {background-color: #cdf1c3;}
 
 .footer-container {
   max-width: 1400px;
@@ -290,11 +294,12 @@ hr {
   font-weight: bold;
   font-size: medium;
   margin: 10px auto 0 auto;
-  padding: 30px;
+  padding: 14px 20px;
   background-color: #cdf1c3;
   max-width: 900px;
   box-sizing: border-box;
-  height: 50vh;
+  height: 60vh;
+  cursor: pointer;
 }
 
 @media {
