@@ -7,7 +7,7 @@ export default () => `
   </div>
   <div class="side-bar">
     <h3>Features</h3>
-    <ul>Features
+    <ul>
     <li>Simple, affordable and easy to use.</li><br>
     <li>Hassle free timely reminders.</li><br>
     <li>Safe and secure accounts/transactions.</li><br>
