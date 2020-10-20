@@ -4,7 +4,7 @@ export default [
   { title: "Contact", text: "Contact", icon: "fa-envelope" },
   { title: "Features", text: "Features", icon: "fa-list-alt" },
   { title: "Faq", text: "Faq", icon: "fa-question-circle" },
-  { title: "Register", text: "Register", icon: "" },
-  { title: "Login", text: "Login", icon: "" },
-  { title: "Search", text: "Search", icon: "" }
+  { title: "Register", text: "Register", icon: "fa-user-plus" },
+  { title: "Login", text: "Login", icon: "fa-sign-in-alt" },
+  { title: "Search", text: "Search", icon: "fa-search" }
 ];

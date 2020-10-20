@@ -1,7 +1,7 @@
 export default () => `
 <section id="Contact">
 <ul>
-Contact Us<br><br>
+<h3>Contact Us<h3><br>
 <li> <i class="fas fa-phone-square">  Phone </i> </li>
 20 WARRANTY<br><br>
 <li> <a href="#"> <i class="far fa-envelope"> Email </i> </li>
