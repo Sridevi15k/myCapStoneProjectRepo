@@ -14,10 +14,10 @@ export default () => `
 
     <div class="option">
       <i class="far fa-copyright"></i>
-      Warranty Reminder 2020 |
-      <a href="#"> Terms & Conditions </a>|
-      Site by Sridevi Kalagara facilitated by SavvyCoders |
-      reachus@warrantyreminder.com
+      Warranty Reminder 2020<br><br><br>
+      <a href="#"> Terms & Conditions </a><br><br><br>
+      <a href="#"> reachus@warrantyreminder.com </a><br><br><br>
+      Site by Sridevi Kalagara facilitated by SavvyCoders
     </div>
   </div>
   </footer>
