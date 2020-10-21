@@ -1,21 +1,25 @@
 export default () => `
 <section id="login-form">
-<h3>Login</h3><br>
+<div>
+<div><h3>Login</h3><br></div>
 <form id="" method="POST" action="">
-        <div class="login-box">
-          <label for="username">Username:</label>
-          <input type="text" name="username" id="username" placeholder="Enter Your Username" required>
-        </div>
-        <div class="login-box">
-          <label for="password">Password:</label>
-          <input type="password" name="password" id="password" required>
-        </div>
-
-        <div class="login">
-        <button type="button" class="loginbtn">Login</button><br><br>
-        <a href="">Forgot username/password?</a><br><br>
-       <button type="button" class="cancelbtn">Cancel</button>
-      </div>
-      </form>
+<div class="login">
+<form method="post" action="">
+  <p><input type="text" name="login" value="" placeholder="Username or Email"></p>
+  <p><input type="password" name="password" value="" placeholder="Password"></p>
+  <p class="remember_me">
+    <label>
+      <input type="checkbox" name="remember_me" id="remember_me">
+      Remember me on this computer
+    </label>
+  </p>
+  <p class="submit"><input type="submit" name="commit" value="Login"></p>
+</form>
+</div>
+<div class="login-help">
+<p>Forgot your password? <a href="#">Click here to reset it</a>.</p>
+</div>
+</div>
+</form>
 </section>
 `;
