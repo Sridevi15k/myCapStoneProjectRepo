@@ -7,6 +7,7 @@
   .hidden--mobile {
     display: none;
   }*/
+
 body {
   background-color: #f4f1de;
 }
@@ -28,10 +29,6 @@ body {
   background-color: #81b29a;
   background-size: cover;
   height: 20vh;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 12;
-  font-style: italic;
-  font-weight: bolder;
   color: #3d405b;
 }
 #logo {
@@ -244,7 +241,7 @@ input[type="password"] {
 }
 
 #signup input[type="text"]:focus input[type="password"]:focus {
-  background-color:#cdf1c3;
+  background-color: #cdf1c3;
   outline: none;
 }
 
@@ -255,7 +252,10 @@ hr {
 }
 
 /* Set a style for the submit button */
-#signup .cancelbtn .signupbtn{
+.signupbtn:hover {
+  opacity: 1;
+}
+#signup .cancelbtn .signupbtn {
   background-color: #cdf1c3;
   color: #3d405b;
   padding: 16px 20px;
@@ -265,16 +265,7 @@ hr {
   width: 100%;
   opacity: 0.9;
 }
-
-.signupbtn:hover {
-  opacity: 1;
-}
-/* Add a blue text color to links */
-/* a {
-  color: dodgerblue;
-} */
-/* Set a grey background color and center the text of the "sign in" section */
-#signup .signin {
+.container #signup .signin {
   background-color: #f4f1de;
   text-align: center;
 }
@@ -290,15 +281,14 @@ hr {
   box-sizing: border-box;
   flex-basis: 30%;
   height: 70vh;
-  color: #3d405b;
 }
-@media (min-width: 900px){
+@media (min-width: 900px) {
   #features {
     display: flex;
     flex-direction: inherit;
   }
 }
-.feature-header{
+ .feature-header{
   font-weight: bolder;
   font-size: large;
 }
@@ -342,15 +332,14 @@ hr {
 } */
 
 #about {
-   background: #cdf1c3;
-   font-family: Arial, Helvetica, sans-serif;
-   max-width: 900px;
-   position: relative;
-   box-sizing: border-box;
-   margin: 0 auto 0 auto;
-   padding: 30px;
-
- }
+  background: #cdf1c3;
+  font-family: Arial, Helvetica, sans-serif;
+  max-width: 900px;
+  position: relative;
+  box-sizing: border-box;
+  margin: 0 auto 0 auto;
+  padding: 30px;
+}
 .about-image {
   position: left;
   overflow: hidden;
@@ -409,25 +398,6 @@ section h2 {
   background: rgba(0, 0, 0, 0.08);
   border-radius: 4px;
 }
-
-/* #login-form h3 {
-  margin: -20px -20px 21px;
-  line-height: 40px;
-  font-size: 15px;
-  font-weight: bold;
-  color: #555;
-  text-align: center;
-  text-shadow: 0 1px white;
-  background: #f3f3f3;
-  border-bottom: 1px solid #cfcfcf;
-  border-radius: 3px 3px 0 0;
-  background-image: -webkit-linear-gradient(top, whiteffd, #eef2f5);
-  background-image: -moz-linear-gradient(top, whiteffd, #eef2f5);
-  background-image: -o-linear-gradient(top, whiteffd, #eef2f5);
-  background-image: linear-gradient(to bottom, whiteffd, #eef2f5);
-  -webkit-box-shadow: 0 1px whitesmoke;
-  box-shadow: 0 1px whitesmoke;
-} */
 
 .login p {
   margin: 20px 0 0;
@@ -517,29 +487,6 @@ input {
   outline-offset: 0;
 }
 
-#login-form input[type=submit] {
-  padding: 0 18px;
-  height: 29px;
-  font-size: 12px;
-  font-weight: bold;
-  color: #3d405b;
-  text-shadow: 0 1px #cdf1c3;
-  background: #f4f1de;
-  border: 1px solid;
-  border-color: #3d405b #cdf1c3 #81b29a;
-  border-radius: 16px;
-  outline: 0;
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  background-image: -webkit-linear-gradient(top, #edf5f8, #cde5ef);
-  background-image: -moz-linear-gradient(top, #edf5f8, #cde5ef);
-  background-image: -o-linear-gradient(top, #edf5f8, #cde5ef);
-  background-image: linear-gradient(to bottom, #edf5f8, #cde5ef);
-  -webkit-box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
-  box-shadow: inset 0 1px #f4f1de, 0 1px 2px #3d405b(0, 0, 0, 0.15);
-}
-
 #login-form input[type=submit]:active {
   background: #f4f1de;
   border-color: #3d405b #cdf1c3 #81b29a;
@@ -550,3 +497,6 @@ input {
 .lt-ie9 input[type=text], .lt-ie9 input[type=password] {
   line-height: 34px;
 }
+
+
+

@@ -1,5 +1,11 @@
 export default () => `
-<section id="Search">
+<section id="search">
+<div class="content">
+  <div class="search">
+    <input type="text" class="search__input" aria-label="search" placeholder="enter your search">
+    <button class="search__submit" aria-label="submit search"><i class="fas fa-search"></i></button>
+  </div>
+</div>
 
 </section>
 `;
