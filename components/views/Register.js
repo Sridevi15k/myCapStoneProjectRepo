@@ -7,10 +7,10 @@ export default () => `
     <hr>
 
     <label for="First Name"><b>First Name</b></label>
-    <input type="text" placeholder="First Name" name="First Name" required>
+    <input type="text" placeholder="First Name" name="FirstName" required>
 
     <label for="Last Name"><b>Last Name</b></label>
-    <input type="text" placeholder="Last Name" name="Last Name" required>
+    <input type="text" placeholder="Last Name" name="LastName" required>
 
     <label for="email"><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" required>
