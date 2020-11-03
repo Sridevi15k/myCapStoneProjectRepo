@@ -9,9 +9,6 @@ const cors = require("cors");
 app.use(cors()); //implements the cors package middleware
 app.use(express.json()); //You have to use this to get the body through your requests, otherwise it won't be available
 app.use(bodyParser.json());
-const firebase = require("firebase").firestore;
-const firebase = require("firebase").auth;
-console.log("Firebase module:", firebase);
 const port = 3000;
 
 let db_status = "MongoDB connection not successful.";
@@ -37,17 +34,6 @@ app.post("/posts", (req, res) => {
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
-
-
-// app.route("/api/getfirebase").get((req, res) => {
-//   // // select a collection
-//   const coll = firebase.collection("Users");
-//   coll
-//     .doc("VGEcuxD9XYmO1m7EbZmD")
-//     .get()
-//     .then(documentSnapshot => console.log(documentSnapshot.data()));
-//   res.status(200).send("In Firebase");
-// });
 
 // app.route("/api/getPosts").get((req, res) => {
 //   pool.query("SELECT * FROM posts", (err, posts) => {
