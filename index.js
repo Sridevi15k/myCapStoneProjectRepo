@@ -4,10 +4,11 @@ import { capitalize } from "lodash";
 //import * as components from "./components";
 import * as state from "./store";
 // importing all by name
-import { Header, Nav, Main, Footer } from "./components";
+import { Header, Nav, Main, Footer, UserNav } from "./components";
 import axios from "axios";
 import "./env";
 import { auth, db } from "./firebase";
+//import carMake from "./lib/carAPI";
 // const coll = db.collection("Users");
 // console.log("Collection:", coll);
 // coll.doc("VGEcuxD9XYmO1m7EbZmD")
@@ -56,16 +57,26 @@ axios
 const router = new Navigo(window.location.origin);
 
 function render(st = state.Home) {
-  document.querySelector("#root").innerHTML = `
-${Header(st)}
-${Nav(state.Links)}
-${Main(st)}
-${Footer()}
-`;
+  console.log("User LoggedIn State:", state.User.loggedIn);
+  if (state.User.loggedIn) {
+    document.querySelector("#root").innerHTML = `
+      ${Header(st)}
+      ${UserNav(state.TopLinks)}
+      ${Main(st)}
+      ${Footer()}`;
+  } else {
+    document.querySelector("#root").innerHTML = `
+      ${Header(st)}
+      ${Nav(state.Links)}
+      ${Main(st)}
+      ${Footer()}`;
+  }
+
   router.updatePageLinks();
 
   addNavEventListeners();
   addSiteListeners(st);
+  //carMake();
 }
 
 render(state.Home);
@@ -87,14 +98,63 @@ function addNavEventListeners() {
 }
 
 function addSiteListeners(st) {
-  // addLogInAndOutListener(state.User);
-  // listenForAuthChange();
-  // addNavEventListeners();
+  addLogInAndOutListener(state.User);
+  listenForAuthChange();
+  //addNavEventListeners();
   listenForRegister(st);
-  // listenForSignIn(st);
+  listenForSignIn(st);
   // getDoggoPics(st);
   // addPicOnFormSubmit(st);
   // removePic(st);
+}
+function addLogInAndOutListener(user) {
+  // select link in header
+  document.querySelector("header a").addEventListener("click", event => {
+    // if user is logged in,
+    if (user.loggedIn) {
+      event.preventDefault();
+      // log out functionality
+      auth.signOut().then(() => {
+        console.log("user logged out");
+        logOutUserInDb(user.email);
+        resetUserInState();
+        //update user in database
+        db.collection("users").get;
+        render(state.Home);
+      });
+      console.log(state.User);
+    }
+    // if user is logged out, clicking the link will render sign in page (handled by <a>'s href)
+  });
+}
+function logOutUserInDb(email) {
+  if (state.loggedIn) {
+    db.collection("users")
+      .get()
+      .then(snapshot =>
+        snapshot.docs.forEach(doc => {
+          if (email === doc.data().email) {
+            let id = doc.id;
+            db.collection("users")
+              .doc(id)
+              .update({ signedIn: false });
+          }
+        })
+      );
+    console.log("user signed out in db");
+  }
+}
+function resetUserInState() {
+  state.User.username = "";
+  state.User.firstName = "";
+  state.User.lastName = "";
+  state.User.email = "";
+  state.User.loggedIn = false;
+}
+
+function listenForAuthChange() {
+  // log user object from auth if a user is signed in
+  auth.onAuthStateChanged(user => (user ? console.log(user) : ""));
 }
 
 function listenForRegister(st) {
@@ -118,17 +178,19 @@ function listenForRegister(st) {
         console.log(response.user);
         addUserToStateAndDb(firstName, lastName, email, password);
         render(state.Home);
+        router.navigate("/Home");
       });
     });
   }
 }
 function addUserToStateAndDb(first, last, email, pass) {
-  console.log("State Username:", state.username);
-  state.username = first + last;
-  state.firstName = first;
-  state.lastName = last;
-  state.email = email;
-  state.loggedIn = true;
+  console.log("State Username:", state.User.username);
+  state.User.username = first + last;
+  state.User.firstName = first;
+  state.User.lastName = last;
+  state.User.email = email;
+  state.User.loggedIn = true;
+  console.log("State Username:", state.User.username);
 
   db.collection("users").add({
     FirstName: first,
@@ -137,4 +199,47 @@ function addUserToStateAndDb(first, last, email, pass) {
     Password: pass,
     signedIn: true
   });
+}
+function listenForSignIn(st) {
+  if (st.view === "Login") {
+    document.querySelector("form").addEventListener("submit", event => {
+      event.preventDefault();
+      // convert HTML elements to Array
+      let inputList = Array.from(event.target.elements);
+      // remove submit button from list
+      inputList.pop();
+      const inputs = inputList.map(input => input.value);
+      let email = inputs[0];
+      let password = inputs[1];
+      auth.signInWithEmailAndPassword(email, password).then(() => {
+        console.log("user signed in");
+        getUserFromDb(email).then(() =>
+          render(state.Home).then(router.navigate("/Home"))
+        );
+      });
+    });
+  }
+}
+function getUserFromDb(email) {
+  state.User.loggedIn = true;
+  return db
+    .collection("users")
+    .get()
+    .then(snapshot =>
+      snapshot.docs.forEach(doc => {
+        if (email === doc.data().email) {
+          let id = doc.id;
+          db.collection("users")
+            .doc(id)
+            .update({ signedIn: true });
+          console.log("user signed in in db");
+          let user = doc.data();
+          state.User.username = user.firstName + user.lastName;
+          state.User.firstName = user.firstName;
+          state.User.lastName = user.lastName;
+          state.User.email = email;
+          console.log("User from DB:", state.User.loggedIn);
+        }
+      })
+    );
 }
