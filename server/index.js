@@ -9,7 +9,7 @@ const cors = require("cors");
 app.use(cors()); //implements the cors package middleware
 app.use(express.json()); //You have to use this to get the body through your requests, otherwise it won't be available
 app.use(bodyParser.json());
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 let db_status = "MongoDB connection not successful.";
 
