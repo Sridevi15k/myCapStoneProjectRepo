@@ -2,35 +2,52 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/test");
+const bodyParser = require("body-parser");
 const db = mongoose.connection;
 const cors = require("cors");
 // const pool = require("./db");
 app.use(cors()); //implements the cors package middleware
 app.use(express.json()); //You have to use this to get the body through your requests, otherwise it won't be available
+app.use(bodyParser.json());
 const firebase = require("firebase").firestore;
+const firebase = require("firebase").auth;
 console.log("Firebase module:", firebase);
 const port = 3000;
+
 let db_status = "MongoDB connection not successful.";
 
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => (db_status = "Successfully opened connection to Mongo!"));
 
+const postSchema = new mongoose.Schema({
+  title: String,
+  body: String
+});
+const Post = mongoose.model("Post", postSchema);
+
 app.get("/", (req, res) => {
   res.send(db_status);
+});
+
+app.post("/posts", (req, res) => {
+  const newPost = new Post(req.body);
+  newPost.save((err, post) => {
+    return err ? res.sendStatus(500).json(err) : res.json(post);
+  });
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 
-app.route("/api/getfirebase").get((req, res) => {
-  // // select a collection
-  const coll = firebase.collection("Users");
-  // coll
-  //   .doc("VGEcuxD9XYmO1m7EbZmD")
-  //   .get()
-  //   .then(documentSnapshot => console.log(documentSnapshot.data()));
-  res.status(200).send("In Firebase");
-});
+// app.route("/api/getfirebase").get((req, res) => {
+//   // // select a collection
+//   const coll = firebase.collection("Users");
+//   coll
+//     .doc("VGEcuxD9XYmO1m7EbZmD")
+//     .get()
+//     .then(documentSnapshot => console.log(documentSnapshot.data()));
+//   res.status(200).send("In Firebase");
+// });
 
 // app.route("/api/getPosts").get((req, res) => {
 //   pool.query("SELECT * FROM posts", (err, posts) => {
@@ -46,7 +63,7 @@ app.route("/api/getfirebase").get((req, res) => {
 // app.listen(8675, () => console.log("Listening on port 8675")); //starts the server so you can hit your API's
 
 //const morgan = require("morgan");
-//const bodyParser = require("body-parser");
+
 //const posts = require("./routers/posts");
 //const authors = require("./routers/authors");
 
