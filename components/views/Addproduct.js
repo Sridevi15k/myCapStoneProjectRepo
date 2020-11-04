@@ -1,46 +1,47 @@
 export default () => `
-<form action="" method="post">
+<form class="product" id="product-box" action="" method="post">
 <h1>Add your product details.</h1>
 
     <p>Please fill in this form to register the product.</p>
     <hr>
- <ul>
- <li>
+
+  <div>
     <label for="manufacturer">Manufacturer:</label>
     <input type="text" id="manufacturer" name="manufacturer_name">
     <abbr title="required" aria-label="required">*</abbr>
-  </li>
-  <li>
+  </div><br><br>
+  <div>
     <label for="name">Product Name:</label>
     <input type="text" id="productname" name="product_name">
     <abbr title="required" aria-label="required">*</abbr>
-  </li>
-  <li>
+  </div><br><br>
+  <div>
     <label for="model">Model:</label>
     <input type="varchar" id="model" name="model_no">
     <abbr title="required" aria-label="required">*</abbr>
-  </li>
-  <li>
+  </div><br><br>
+  <div>
     <label for="purchasedate">Date of Purchase:</label>
     <input type="date" placeholder="mm-dd-yyyy" value=""
     min="01-01-2010" max="12-31-2050" id="purchasedate" name="purchase_date">
     <abbr title="required" aria-label="required">*</abbr>
-  </li>
-  <li>
+  </div><br><br>
+  <div>
     <label for="expirydate">Expiry Date:</label>
     <input type="date" placeholder="mm-dd-yyyy" value=""
     min="11-01-2020" max="12-31-2050" id="expirydate" name="expiry_date">
     <abbr title="required" aria-label="required">*</abbr>
-  </li>
-  <li>
+  </div><br><br>
+  <div><br><br>
     <label for="photo">Attach photo:</label>
-    <input type"img" id="photo" name="attach_photo"></input>
+    <input type"file" id="photo" name="attach_photo" accept="image/png, image/jpeg"></input>
     <abbr title="required" aria-label="required">*</abbr>
-  </li>
-  <li class="button">
+   </div><br><br>
+
+  <div class="button">
   <button type="submit">Save</button>
-</li>
- </ul>
+  </div>
+
 
 </form>
 `;

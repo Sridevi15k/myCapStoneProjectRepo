@@ -35,6 +35,17 @@ import { auth, db } from "./firebase";
 //       render(state[params.page]);
 //     }
 //   });
+console.log(`${process.env.CARMD_API}`);
+axios
+  .get(`http://api.carmd.com/v3.0/warranty?year=2015&make=CHEVROLET&model=EQUINOX`, {
+      headers: {
+      "content-type": "application/json",
+      "authorization": `${process.env.CARMD_API}`,
+      "partner-token": `${process.env.CARMD_PARTNERTOKEN}`
+      }
+    }
+  )
+  .then(response => console.log(response.data));
 
 // axios
 //.get(/* your API endpoint from above */)

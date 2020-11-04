@@ -497,6 +497,30 @@ input {
 .lt-ie9 input[type=text], .lt-ie9 input[type=password] {
   line-height: 34px;
 }
+.product {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #cdf1c3;
+  color: #3d405b;
+  max-width: 900px;
+  margin: 20px auto 0 auto;
+  padding: 30px;
+  font-weight: bolder;
+}
 
+.product {
+  box-sizing: border-box;
+  box-shadow: 0 0 15px 4px #81b29a;
+}
+
+#product-box {
+  padding: 16px;
+  background-color: #cdf1c3;
+  height: 90vh;
+}
+input {
+  padding: 5px;
+  border: 0;
+  box-shadow: 0 0 10px 4px #81b29a;
+}
 
 
