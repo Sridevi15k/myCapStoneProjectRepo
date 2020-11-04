@@ -120,7 +120,7 @@ function addLogInAndOutListener(user) {
         resetUserInState();
         //update user in database
         db.collection("users").get;
-        render(state.Home);
+        render(state.Addproduct);
       });
       console.log(state.User);
     }
@@ -177,8 +177,8 @@ function listenForRegister(st) {
         console.log(response);
         console.log(response.user);
         addUserToStateAndDb(firstName, lastName, email, password);
-        render(state.Home);
-        router.navigate("/Home");
+        render(state.Addproduct);
+        router.navigate("/Addproduct");
       });
     });
   }
@@ -213,9 +213,7 @@ function listenForSignIn(st) {
       let password = inputs[1];
       auth.signInWithEmailAndPassword(email, password).then(() => {
         console.log("user signed in");
-        getUserFromDb(email).then(() =>
-          render(state.Home).then(router.navigate("/Home"))
-        );
+        getUserFromDb(email).then(() => render(state.Addproduct));
       });
     });
   }
@@ -232,7 +230,7 @@ function getUserFromDb(email) {
           db.collection("users")
             .doc(id)
             .update({ signedIn: true });
-          console.log("user signed in in db");
+          console.log("user signed in db");
           let user = doc.data();
           state.User.username = user.firstName + user.lastName;
           state.User.firstName = user.firstName;

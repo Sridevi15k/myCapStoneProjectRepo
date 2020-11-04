@@ -1,6 +1,6 @@
 export { default as Home } from "./Home";
 export { default as About } from "./About";
-export { default as Form } from "./Form";
+export { default as Addproduct } from "./Addproduct";
 export { default as Gallery } from "./Gallery";
 export { default as Contact } from "./Contact";
 export { default as Register } from "./Register";
