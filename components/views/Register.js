@@ -4,7 +4,7 @@ export default () => `
 <h1>Register</h1>
 
     <p>Please fill in this form to create an account.</p>
-
+    <hr>
 
     <label for="First Name"><b>First Name</b></label>
     <input type="text" placeholder="First Name" name="FirstName" required>
