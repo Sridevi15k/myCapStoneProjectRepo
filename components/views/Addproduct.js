@@ -1,6 +1,6 @@
 export default () => `
 <form class="product" id="product-box" action="" method="post">
-<h1>Add your product details.</h1>
+<h2>Add your product details.</h2>
 
     <p>Please fill in this form to register the product.</p>
     <hr>

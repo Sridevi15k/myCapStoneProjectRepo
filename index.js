@@ -35,17 +35,18 @@ import { auth, db } from "./firebase";
 //       render(state[params.page]);
 //     }
 //   });
-console.log(`${process.env.CARMD_API}`);
-axios
-  .get(`http://api.carmd.com/v3.0/warranty?year=2015&make=CHEVROLET&model=EQUINOX`, {
-      headers: {
-      "content-type": "application/json",
-      "authorization": `${process.env.CARMD_API}`,
-      "partner-token": `${process.env.CARMD_PARTNERTOKEN}`
-      }
-    }
-  )
-  .then(response => console.log(response.data));
+// axios
+//   .get(
+//     `http://api.carmd.com/v3.0/warranty?year=2015&make=CHEVROLET&model=EQUINOX`,
+//     {
+//       headers: {
+//         "content-type": "application/json",
+//         authorization: `${process.env.CARMD_API}`,
+//         "partner-token": `${process.env.CARMD_PARTNERTOKEN}`
+//       }
+//     }
+//   )
+//   .then(response => console.log(response.data));
 
 // axios
 //.get(/* your API endpoint from above */)
@@ -87,6 +88,7 @@ function render(st = state.Home) {
 
   addNavEventListeners();
   addSiteListeners(st);
+  addProductListener();
   //carMake();
 }
 
@@ -106,6 +108,22 @@ function addNavEventListeners() {
     .addEventListener("click", () =>
       document.querySelector("nav > ul").classList.toggle("hidden--mobile")
     );
+}
+
+function addProductListener() {
+  // select link in header
+
+  if (document.querySelector("#addproduct")) {
+    document.querySelector("#addproduct").addEventListener("click", event => {
+      // if user is logged in,
+      if (state.User.loggedIn) {
+        event.preventDefault();
+        render(state.Addproduct);
+        router.navigate("/Addproduct");
+      }
+      // if user is logged out, clicking the link will render sign in page (handled by <a>'s href)
+    });
+  }
 }
 
 function addSiteListeners(st) {
@@ -224,7 +242,7 @@ function listenForSignIn(st) {
       let password = inputs[1];
       auth.signInWithEmailAndPassword(email, password).then(() => {
         console.log("user signed in");
-        getUserFromDb(email).then(() => render(state.Addproduct));
+        getUserFromDb(email).then(() => render(state.Productlist));
       });
     });
   }
@@ -252,3 +270,31 @@ function getUserFromDb(email) {
       })
     );
 }
+//Table for product list
+// function generateTableHead(table, data) {
+//   let thead = table.createTHead();
+//   let row = thead.insertRow();
+//   for (let key of data) {
+//     let th = document.createElement("th");
+//     let text = document.createTextNode(key);
+//     th.appendChild(text);
+//     row.appendChild(th);
+//   }
+// }
+
+// function generateTable(table, data) {
+//   for (let element of data) {
+//     let row = table.insertRow();
+//     for (key in element) {
+//       let cell = row.insertCell();
+//       let text = document.createTextNode(element[key]);
+//       cell.appendChild(text);
+//     }
+//   }
+// }
+
+// let table = document.querySelector("table");
+// let data = Object.keys(users[0]);
+// generateTableHead(table, users);
+// generateTableHead(table, data);
+
