@@ -10,3 +10,4 @@ export { default as Search } from "./Search";
 export { default as Features } from "./Features";
 export { default as Logo } from "./Logo";
 export { default as User } from "./User";
+export { default as Productlist } from "./Productlist";

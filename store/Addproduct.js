@@ -1,4 +1,5 @@
 export default {
   header: "Addproduct",
-  view: "Addproduct"
+  view: "Addproduct",
+  User: []
 };
