@@ -20,7 +20,18 @@ const postSchema = new mongoose.Schema({
   title: String,
   body: String
 });
+
+const productSchema = new mongoose.Schema({
+  manufacturer: String,
+  productName: String,
+  modelNo: String,
+  dateOfPurchase: Date,
+  expiryDate: Date,
+  photo: String
+});
+
 const Post = mongoose.model("Post", postSchema);
+const Product = mongoose.model("Product", productSchema);
 
 app.get("/", (req, res) => {
   res.send(db_status);
@@ -30,6 +41,14 @@ app.post("/posts", (req, res) => {
   const newPost = new Post(req.body);
   newPost.save((err, post) => {
     return err ? res.sendStatus(500).json(err) : res.json(post);
+  });
+});
+
+// Code for adding new product to warranty catalog
+app.put("/products", (req, res) => {
+  const newProduct = new Product(req.body);
+  newProduct.save((err, product) => {
+    return err ? res.sendStatus(500).json(err) : res.json(product);
   });
 });
 

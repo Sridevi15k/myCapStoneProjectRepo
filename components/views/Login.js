@@ -1,7 +1,7 @@
 export default () => `
 <section id="login-form">
 <div>
-<div><h3>Login</h3><br></div>
+<div><h3>Login</h3></div>
 <form id="" method="POST" action="">
 <div class="login">
 <form method="post" action="">
@@ -17,7 +17,7 @@ export default () => `
 </form>
 </div>
 <div class="login-help">
-<p>Forgot your password? <a href="#">Click here to reset it</a>.</p>
+<p>Forgot your password? <a href="#">Click here to reset.</a>.</p>
 </div>
 </div>
 </form>
