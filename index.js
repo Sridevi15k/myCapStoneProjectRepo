@@ -118,6 +118,13 @@ function addProductListener() {
       // if user is logged in,
       if (state.User.loggedIn) {
         event.preventDefault();
+        axios
+          .get(`https://api.github.com/users/Sridevi15k/repos`, {
+            headers: {
+              Authorization: `${process.env.GITHUB__TOKEN}`
+            }
+          })
+          .then(response => console.log(response.data));
         render(state.Addproduct);
         router.navigate("/Addproduct");
       }
@@ -149,7 +156,8 @@ function addLogInAndOutListener(user) {
         resetUserInState();
         //update user in database
         db.collection("users").get;
-        render(state.Addproduct);
+        render(state.Home);
+        router.navigate("/Home");
       });
       console.log(state.User);
     }
@@ -206,8 +214,8 @@ function listenForRegister(st) {
         console.log(response);
         console.log(response.user);
         addUserToStateAndDb(firstName, lastName, email, password);
-        render(state.Addproduct);
-        router.navigate("/Addproduct");
+        render(state.Productlist);
+        router.navigate("/Productlist");
       });
     });
   }
@@ -225,7 +233,6 @@ function addUserToStateAndDb(first, last, email, pass) {
     FirstName: first,
     LastName: last,
     Email: email,
-    Password: pass,
     signedIn: true
   });
 }
