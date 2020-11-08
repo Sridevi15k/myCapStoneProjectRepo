@@ -234,23 +234,36 @@ nav .active {
 
 /* Add padding to containers */
 .container {
-  padding: 16px;
-  background-color: #f4f1de;
-  height: 90vh;
+  padding: 12px;
+  /*background-color: #f4f1de;*/
+  height: 100vh;
 }
 
 /* Full-width input fields */
 #signup input[type="text"],
 input[type="password"] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
+  width: 300px;
+  /* padding: 15px;
+  margin: 5px 0 15px 0;
   display: inline-block;
   border: none;
   background: #f4f1de;
+  height: 32px; */
+  margin: 5px;
+  padding: 0 10px;
+  height: 32px;
+  color: #3d405b;
+  background: white;
+  border: 1px solid;
+  border-color: #3d405b #cdf1c3 #81b29a;
+  border-radius: 2px;
+  outline: 5px solid #f4f1de;
+  -moz-outline-radius: 3px;
+  -webkit-box-shadow: inset 0 1px 3px #3d405b(0, 0, 0, 0.12);
+   box-shadow: inset 0 1px 3px #3d405b(0, 0, 0, 0.12);
 }
 
-#signup input[type="text"]:focus input[type="password"]:focus {
+ #signup input[type="text"]:focus input[type="password"]:focus {
   background-color: #cdf1c3;
   outline: none;
 }
@@ -275,10 +288,23 @@ hr {
   width: 100%;
   opacity: 0.9;
 }
-.container #signup {
+#signup label {
+    /* Uniform size & alignment */
+    display: inline-block;
+    width: 150px;
+    text-align: right;
+  }
+  #signup input  {
+  /* Uniform text field size */
+    width: 300px;
+    box-sizing: border-box;
+    border: 1px solid #999;
+  }
+
+/* .container #signup {
   background-color: #f4f1de;
   text-align: center;
-}
+} */
 #features {
   color: #3d405b;
   font-family: Arial, Helvetica, sans-serif;
@@ -290,7 +316,7 @@ hr {
   max-width: 900px;
   box-sizing: border-box;
   flex-basis: 30%;
-  height: 70vh;
+  height: 90vh;
 }
 @media (min-width: 900px) {
   #features {
@@ -327,10 +353,10 @@ hr {
     display: flex;
   }
 }
-.login-box {
+/* .login-box {
   padding: 10px 0;
   display: flex;
-}
+} */
 
 /* .login-box label {
   padding-right: 10px;
@@ -405,7 +431,7 @@ section h2 {
   bottom: -8px;
   left: -8px;
   z-index: -1;
-  background: 3d405b (0, 0, 0, 0.08);
+  background: #3d405b (0, 0, 0, 0.08);
   border-radius: 4px;
 }
 
@@ -442,7 +468,7 @@ section h2 {
 .login-help {
   margin: 20px 0;
   font-size: 11px;
-  color: white;
+  color: #f4f1de;
   text-align: center;
   text-shadow: 0 1px #cdf1c3;
 }
@@ -475,7 +501,7 @@ input {
 input[type="password"] {
   margin: 5px;
   padding: 0 10px;
-  width: 260px;
+  width: 200px;
   height: 34px;
   color: #3d405b;
   background: white;
@@ -484,8 +510,8 @@ input[type="password"] {
   border-radius: 2px;
   outline: 5px solid #f4f1de;
   -moz-outline-radius: 3px;
-  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
+  -webkit-box-shadow: inset 0 1px 3px #3d405b(0, 0, 0, 0.12);
+  box-shadow: inset 0 1px 3px #3d405b(0, 0, 0, 0.12);
 }
 
 #login-form input[type="text"]:focus,
@@ -499,13 +525,13 @@ input[type="password"]:focus {
   background: #f4f1de;
   border-color: #3d405b #cdf1c3 #81b29a;
   -webkit-box-shadow: inset 0 0 3px #81b29a(0, 0, 0, 0.2);
-  /*box-shadow: inset 0 0 3px #cdf1c3(0, 0, 0, 0.2);*/
+  box-shadow: inset 0 0 3px #cdf1c3(0, 0, 0, 0.2);
 }
 
-.lt-ie9 input[type="text"],
+/* .lt-ie9 input[type="text"],
 .lt-ie9 input[type="password"] {
   line-height: 34px;
-}
+} */
 .product {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #cdf1c3;
@@ -523,13 +549,22 @@ input[type="password"]:focus {
 #product-box {
   padding: 16px;
   background-color: #cdf1c3;
-  height: 90vh;
+  height: 95vh;
 }
-input {
-  padding: 5px;
-  border: 0;
-  /* box-shadow: 0 0 10px 4px #81b29a;*/
+#product-box label {
+  /* Uniform size & alignment */
+  display: inline-block;
+  width: 150px;
+  text-align: right;
 }
+#product-box input  {
+/* Uniform text field size */
+  width: 300px;
+  box-sizing: border-box;
+  border: 1px solid #999;
+  height: 33px;
+}
+
 #search input {
   color: #cdf1c3;
   font-family: Arial, Helvetica, sans-serif;
