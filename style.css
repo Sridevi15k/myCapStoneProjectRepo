@@ -291,7 +291,7 @@ hr {
 #signup label {
     /* Uniform size & alignment */
     display: inline-block;
-    width: 150px;
+    width: 160px;
     text-align: right;
   }
   #signup input  {
@@ -528,10 +528,6 @@ input[type="password"]:focus {
   box-shadow: inset 0 0 3px #cdf1c3(0, 0, 0, 0.2);
 }
 
-/* .lt-ie9 input[type="text"],
-.lt-ie9 input[type="password"] {
-  line-height: 34px;
-} */
 .product {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #cdf1c3;
@@ -556,6 +552,7 @@ input[type="password"]:focus {
   display: inline-block;
   width: 150px;
   text-align: right;
+  color: #3d405b;
 }
 #product-box input  {
 /* Uniform text field size */
@@ -563,13 +560,25 @@ input[type="password"]:focus {
   box-sizing: border-box;
   border: 1px solid #999;
   height: 33px;
+  margin: 5px;
+  padding: 0 10px;
+  width: 240px;
+  color: #3d405b;
+  background: white;
+  border: 1px solid;
+  border-color: #3d405b #cdf1c3 #81b29a;
+  border-radius: 2px;
+  outline: 5px solid #f4f1de;
+  -moz-outline-radius: 3px;
+  -webkit-box-shadow: inset 0 1px 3px #3d405b(0, 0, 0, 0.12);
+  box-shadow: inset 0 1px 3px #3d405b(0, 0, 0, 0.12);
 }
 
 #search input {
   color: #cdf1c3;
   font-family: Arial, Helvetica, sans-serif;
 }
-#searchbar {
+#searchbar  {
   box-sizing: border-box;
   height: 30vh;
   background-color: #cdf1c3;
@@ -579,19 +588,22 @@ input[type="password"]:focus {
   padding: 60px 40px 40px 300px;
   font-size: 16px;
   font-family: Montserrat, sans-serif;
-  border: 0 none;
-  height: 150px;
-  color: white;
-  outline: none;
-  float: center;
-  transition: all 0.35s;
 }
-
-/* .content button {
- display: flex;
- margin: 0 auto;
- display: block;
-} */
+.search_input{
+  margin: 5px;
+  padding: 0 10px;
+  width: 200px;
+  height: 34px;
+  color: #3d405b;
+  background: white;
+  border: 1px solid;
+  border-color: #3d405b #cdf1c3 #81b29a;
+  border-radius: 2px;
+  outline: 5px solid #f4f1de;
+  -moz-outline-radius: 3px;
+  -webkit-box-shadow: inset 0 1px 3px #3d405b(0, 0, 0, 0.12);
+  box-shadow: inset 0 1px 3px #3d405b(0, 0, 0, 0.12);
+}
 td,
 th {
   border: 2px solid #3d405b;
