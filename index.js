@@ -184,17 +184,7 @@ function listenForSignIn(st) {
       let email = inputs[0];
       let password = inputs[1];
       auth.signInWithEmailAndPassword(email, password).then(userRef => {
-        getUserFromDb(userRef.user.uid).then(doc => {
-          if (doc.exists) {
-            const userData = doc.data();
-            state.User.uid = uid;
-            state.User.loggedIn = true;
-            state.User.firstName = userData.firstName;
-            state.User.lastName = userData.lastName;
-            state.User.email = userData.email;
-          } else {
-            console.log("No such document!");
-          }
+        getUserFromDb(userRef.user.uid).then(() => {
           render(state.Productlist);
           router.navigate("/Productlist");
         });
@@ -252,4 +242,3 @@ function getUserFromDb(uid) {
 // let data = Object.keys(users[0]);
 // generateTableHead(table, users);
 // generateTableHead(table, data);
-
