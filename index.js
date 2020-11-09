@@ -8,7 +8,6 @@ import { Header, Nav, Main, Footer, UserNav } from "./components";
 import axios from "axios";
 import "./env";
 import { auth, db } from "./firebase";
-import { doc } from "prettier";
 
 const router = new Navigo(window.location.origin);
 router.updatePageLinks();
