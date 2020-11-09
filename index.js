@@ -13,6 +13,7 @@ const router = new Navigo(window.location.origin);
 router.updatePageLinks();
 
 function render(st = state.Home) {
+  console.log("User Login State:", state.User.loggedIn);
   if (state.User.loggedIn) {
     document.querySelector("#root").innerHTML = `
       ${Header(st)}
@@ -27,6 +28,9 @@ function render(st = state.Home) {
       ${Footer()}`;
   }
 
+  router.updatePageLinks();
+
+  listenForAuthChange();
   addNavEventListeners();
   addSiteListeners(st);
   addProductListener();
@@ -57,6 +61,11 @@ function addSiteListeners(st) {
   listenForSignIn(st);
 }
 
+function listenForAuthChange() {
+  // log user object from auth if a user is signed in
+  auth.onAuthStateChanged(user => (user ? console.log(user) : ""));
+}
+
 function addProductListener() {
   // select link in header
 
@@ -82,24 +91,26 @@ function addProductListener() {
 
 function addLogInAndOutListener(user) {
   // select link in header
-  document.querySelector("header a").addEventListener("click", event => {
-    // if user is logged in,
-    if (user.loggedIn) {
-      event.preventDefault();
-      // log out functionality
-      auth.signOut().then(() => {
-        console.log("user logged out");
-        logOutUserInDb(user.email);
-        resetUserInState();
-        //update user in database
-        db.collection("users").get;
-        render(state.Home);
-        router.navigate("/Home");
-      });
-      console.log(state.User);
-    }
-    // if user is logged out, clicking the link will render sign in page (handled by <a>'s href)
-  });
+  if (document.querySelector("#Nav_Signout")) {
+    document.querySelector("#Nav_Signout").addEventListener("click", event => {
+      // if user is logged in,
+      if (user.loggedIn) {
+        event.preventDefault();
+        // log out functionality
+        auth.signOut().then(() => {
+          console.log("user logged out");
+          logOutUserInDb(user.email);
+          resetUserInState();
+          //update user in database
+          db.collection("users").get;
+          render(state.Home);
+          router.navigate("/Home");
+        });
+        console.log(state.User);
+      }
+      // if user is logged out, clicking the link will render sign in page (handled by <a>'s href)
+    });
+  }
 }
 
 function logOutUserInDb(email) {
@@ -152,6 +163,7 @@ function listenForRegister(st) {
     });
   }
 }
+
 function addUserToStateAndDb(uid, first, last, email) {
   state.User.uid = uid;
   state.User.username = first + last;
@@ -183,7 +195,9 @@ function listenForSignIn(st) {
       let email = inputs[0];
       let password = inputs[1];
       auth.signInWithEmailAndPassword(email, password).then(userRef => {
+        state.User.loggedIn = true;
         getUserFromDb(userRef.user.uid).then(() => {
+          state.User.loggedIn = true;
           render(state.Productlist);
           router.navigate("/Productlist");
         });
