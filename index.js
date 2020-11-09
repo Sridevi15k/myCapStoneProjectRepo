@@ -8,68 +8,12 @@ import { Header, Nav, Main, Footer, UserNav } from "./components";
 import axios from "axios";
 import "./env";
 import { auth, db } from "./firebase";
-//import carMake from "./lib/carAPI";
-// const coll = db.collection("Users");
-// console.log("Collection:", coll);
-// coll.doc("VGEcuxD9XYmO1m7EbZmD")
-// .get()
-// .then(documentSnapshot => console.log(documentSnapshot.data()));
-
-// add menu toggle to bars icon in nav bar
-/*document.querySelector(".fa-bars").addEventListener("click", () => {
-  document.querySelector("nav > ul").classList.toggle("hidden--mobile");});*/
-// get data from an API endpoint
-// axios
-//   .get("https://jsonplaceholder.typicode.com/posts")
-//   // handle the response from the API
-//   .then(response => {
-//     // for each post in the response Array,
-//     response.data.forEach(post => {
-//       // add it to state.Blog.posts
-//       state.Blog.posts.push(post);
-//     });
-//     const params = router.lastRouteResolved().params;
-//     // if params exists (any page but Home),
-//     if (params) {
-//       // re-render the page
-//       render(state[params.page]);
-//     }
-//   });
-// axios
-//   .get(
-//     `http://api.carmd.com/v3.0/warranty?year=2015&make=CHEVROLET&model=EQUINOX`,
-//     {
-//       headers: {
-//         "content-type": "application/json",
-//         authorization: `${process.env.CARMD_API}`,
-//         "partner-token": `${process.env.CARMD_PARTNERTOKEN}`
-//       }
-//     }
-//   )
-//   .then(response => console.log(response.data));
-
-// axios
-//.get(/* your API endpoint from above */)
-//.then(response => {
-//   state.Home.weather.city = response.name;
-//   state.Home.weather.temp = response.main.temp;
-//   state.Home.weather.description = response.weather.main;
-// });
-//remove the API key and put after ID= and before`${process.env.OPEN_WEATHER_API_KEY}`
-//.catch(err => console.log(err));
-
-axios
-  .get(`https://api.github.com/users/Sridevi15k/repos`, {
-    headers: {
-      Authorization: `${process.env.GITHUB__TOKEN}`
-    }
-  })
-  .then(response => console.log(response.data));
+import { doc } from "prettier";
 
 const router = new Navigo(window.location.origin);
+router.updatePageLinks();
 
 function render(st = state.Home) {
-  console.log("User LoggedIn State:", state.User.loggedIn);
   if (state.User.loggedIn) {
     document.querySelector("#root").innerHTML = `
       ${Header(st)}
@@ -83,8 +27,6 @@ function render(st = state.Home) {
       ${Main(st)}
       ${Footer()}`;
   }
-
-  router.updatePageLinks();
 
   addNavEventListeners();
   addSiteListeners(st);
@@ -110,6 +52,12 @@ function addNavEventListeners() {
     );
 }
 
+function addSiteListeners(st) {
+  addLogInAndOutListener(state.User);
+  listenForRegister(st);
+  listenForSignIn(st);
+}
+
 function addProductListener() {
   // select link in header
 
@@ -133,16 +81,6 @@ function addProductListener() {
   }
 }
 
-function addSiteListeners(st) {
-  addLogInAndOutListener(state.User);
-  listenForAuthChange();
-  //addNavEventListeners();
-  listenForRegister(st);
-  listenForSignIn(st);
-  // getDoggoPics(st);
-  // addPicOnFormSubmit(st);
-  // removePic(st);
-}
 function addLogInAndOutListener(user) {
   // select link in header
   document.querySelector("header a").addEventListener("click", event => {
@@ -164,6 +102,7 @@ function addLogInAndOutListener(user) {
     // if user is logged out, clicking the link will render sign in page (handled by <a>'s href)
   });
 }
+
 function logOutUserInDb(email) {
   if (state.loggedIn) {
     db.collection("users")
@@ -181,17 +120,14 @@ function logOutUserInDb(email) {
     console.log("user signed out in db");
   }
 }
+
 function resetUserInState() {
+  state.User.uid = "";
   state.User.username = "";
   state.User.firstName = "";
   state.User.lastName = "";
   state.User.email = "";
   state.User.loggedIn = false;
-}
-
-function listenForAuthChange() {
-  // log user object from auth if a user is signed in
-  auth.onAuthStateChanged(user => (user ? console.log(user) : ""));
 }
 
 function listenForRegister(st) {
@@ -210,32 +146,32 @@ function listenForRegister(st) {
 
       //create user in Firebase
       auth.createUserWithEmailAndPassword(email, password).then(response => {
-        console.log("user registered");
-        console.log(response);
-        console.log(response.user);
-        addUserToStateAndDb(firstName, lastName, email, password);
+        addUserToStateAndDb(response.user.uid, firstName, lastName, email);
         render(state.Productlist);
         router.navigate("/Productlist");
       });
     });
   }
 }
-function addUserToStateAndDb(first, last, email, pass) {
-  console.log("State Username:", state.User.username);
+function addUserToStateAndDb(uid, first, last, email) {
+  state.User.uid = uid;
   state.User.username = first + last;
   state.User.firstName = first;
   state.User.lastName = last;
   state.User.email = email;
   state.User.loggedIn = true;
-  console.log("State Username:", state.User.username);
 
-  db.collection("users").add({
-    FirstName: first,
-    LastName: last,
-    Email: email,
-    signedIn: true
-  });
+  console.log("User Id:", uid);
+  db.collection("users")
+    .doc(uid)
+    .set({
+      firstName: first,
+      lastName: last,
+      email: email,
+      signedIn: true
+    });
 }
+
 function listenForSignIn(st) {
   if (st.view === "Login") {
     document.querySelector("form").addEventListener("submit", event => {
@@ -247,36 +183,48 @@ function listenForSignIn(st) {
       const inputs = inputList.map(input => input.value);
       let email = inputs[0];
       let password = inputs[1];
-      auth.signInWithEmailAndPassword(email, password).then(() => {
-        console.log("user signed in");
-        getUserFromDb(email).then(() => render(state.Productlist));
+      auth.signInWithEmailAndPassword(email, password).then(userRef => {
+        getUserFromDb(userRef.user.uid).then(doc => {
+          if (doc.exists) {
+            const userData = doc.data();
+            state.User.uid = uid;
+            state.User.loggedIn = true;
+            state.User.firstName = userData.firstName;
+            state.User.lastName = userData.lastName;
+            state.User.email = userData.email;
+          } else {
+            console.log("No such document!");
+          }
+          render(state.Productlist);
+          router.navigate("/Productlist");
+        });
       });
     });
   }
 }
-function getUserFromDb(email) {
-  state.User.loggedIn = true;
+
+function getUserFromDb(uid) {
   return db
     .collection("users")
+    .doc(uid)
     .get()
-    .then(snapshot =>
-      snapshot.docs.forEach(doc => {
-        if (email === doc.data().email) {
-          let id = doc.id;
-          db.collection("users")
-            .doc(id)
-            .update({ signedIn: true });
-          console.log("user signed in db");
-          let user = doc.data();
-          state.User.username = user.firstName + user.lastName;
-          state.User.firstName = user.firstName;
-          state.User.lastName = user.lastName;
-          state.User.email = email;
-          console.log("User from DB:", state.User.loggedIn);
-        }
-      })
-    );
+    .then(function(doc) {
+      if (doc.exists) {
+        const userData = doc.data();
+        state.User.uid = uid;
+        state.User.loggedIn = true;
+        state.User.firstName = userData.firstName;
+        state.User.lastName = userData.lastName;
+        state.User.email = userData.email;
+      } else {
+        console.log("No such document!");
+      }
+    })
+    .catch(function(error) {
+      console.log("Error getting document:", error);
+    });
 }
+
 //Table for product list
 // function generateTableHead(table, data) {
 //   let thead = table.createTHead();
