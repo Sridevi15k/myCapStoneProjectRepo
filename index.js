@@ -67,26 +67,38 @@ function listenForAuthChange() {
 }
 
 function addProductListener() {
-  // select link in header
-
   if (document.querySelector("#addproduct")) {
     document.querySelector("#addproduct").addEventListener("click", event => {
       // if user is logged in,
       if (state.User.loggedIn) {
         event.preventDefault();
-        axios
-          .get(`https://api.github.com/users/Sridevi15k/repos`, {
-            headers: {
-              Authorization: `${process.env.GITHUB__TOKEN}`
-            }
-          })
-          .then(response => console.log(response.data));
         render(state.Addproduct);
+        saveProductListener();
         router.navigate("/Addproduct");
       }
       // if user is logged out, clicking the link will render sign in page (handled by <a>'s href)
     });
   }
+}
+
+function saveProductListener() {
+  axios
+    .post(
+      `http://localhost:3000/products`,
+      {
+        uid: state.User.uid,
+        manufacturer: "Samsung",
+        productName: "Galaxy",
+        modelNo: "SGAX1234",
+        dateOfPurchase: "2020-11-08",
+        expiryDate: "2021-11-07",
+        photo: "Photo"
+      },
+      error => {
+        console.log("Error Saving Product:", error);
+      }
+    )
+    .then(response => console.log("Save Product response:", response.data));
 }
 
 function addLogInAndOutListener(user) {
