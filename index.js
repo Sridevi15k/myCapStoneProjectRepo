@@ -69,12 +69,52 @@ function addProductListener() {
       if (state.User.loggedIn) {
         event.preventDefault();
         render(state.Addproduct);
-        saveProductListener();
         router.navigate("/Addproduct");
+        addSaveProductListener();
+        console.log("ok added");
       }
       // if user is logged out, clicking the link will render sign in page (handled by <a>'s href)
     });
   }
+}
+
+function addSaveProductListener() {
+  document.querySelector("form").addEventListener("submit", event => {
+    event.preventDefault();
+    // convert HTML elements to Array
+    let inputList = Array.from(event.target.elements);
+    // remove submit button from list
+    inputList.pop();
+    const inputs = inputList.map(input => input.value);
+    let manufacturer = inputs[0];
+    let productName = inputs[1];
+    let modelNo = inputs[2];
+    let dateOfPurchase = inputs[3];
+    let expiryDate = inputs[4];
+    let photo = inputs[5];
+    axios
+      .post(
+        `http://localhost:3000/products`,
+        {
+          uid: state.User.uid,
+          manufacturer: manufacturer,
+          productName: productName,
+          modelNo: modelNo,
+          dateOfPurchase: dateOfPurchase,
+          expiryDate: expiryDate,
+          photo: photo
+        },
+        error => {
+          console.log("Error Saving Product:", error);
+        }
+      )
+      .then(() => {
+        getProducts().then(() => {
+          render(state.Productlist);
+          router.navigate("/Productlist");
+        });
+      });
+  });
 }
 
 function getProducts() {
@@ -108,26 +148,6 @@ function listenForSignIn(st) {
       });
     });
   }
-}
-
-function saveProductListener() {
-  axios
-    .post(
-      `http://localhost:3000/products`,
-      {
-        uid: state.User.uid,
-        manufacturer: "Samsung",
-        productName: "Galaxy",
-        modelNo: "SGAX1234",
-        dateOfPurchase: "2020-11-08",
-        expiryDate: "2021-11-07",
-        photo: "Photo"
-      },
-      error => {
-        console.log("Error Saving Product:", error);
-      }
-    )
-    .then(response => console.log("Save Product response:", response.data));
 }
 
 function addLogInAndOutListener(user) {
