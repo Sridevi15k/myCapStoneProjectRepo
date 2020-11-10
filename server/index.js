@@ -43,11 +43,8 @@ app.post("/products", (req, res) => {
 
 // Code for adding new product to warranty catalog
 app.get("/products/:uid", (req, res) => {
-  console.log("Request Params:", req.params);
   var query = Product.find({ uid: req.params.uid });
-  console.log(req.params.uid);
   query.exec(function(err, products) {
-    console.log(products);
     return err ? res.sendStatus(500).json(err) : res.json(products);
   });
 });
