@@ -34,14 +34,12 @@ UserNav > ul > li:hover {
 #logo {
   display: flex;
   -ms-flex-item-align: start;
-
 }
 .heading{
   display: flex;
   color: #3d405b;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   margin: -90px 0 0 1100px;
-
 }
 
 
@@ -617,14 +615,6 @@ input[type="password"]:focus {
   color: #000000;
 }
 
-td,
-th {
-  border: 2px solid #3d405b;
-  padding: 0.5rem;
-  border-spacing: 0.15rem;
-  background-color: #e07a5f;
-  font-weight: 300;
-}
 #producttable {
   max-width: 900px;
   background-color: #cdf1c3;
@@ -641,4 +631,27 @@ th {
 }
 #addproduct:hover {
   background-color: #e07a5f;
+}
+
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
 }

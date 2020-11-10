@@ -7,7 +7,7 @@ export default st => `
 <h3>Product list</h3>
 </div>
 <div>
-<table class="productlist">
+<table id="customers" >
 <thead>
 <tr>
 <th> Manufacturer </th>
@@ -15,6 +15,7 @@ export default st => `
 <th> Model </th>
 <th> Date of Purchase </th>
 <th> Date of Expiry </th>
+<th colspan=2>&nbsp;</th>
 </tr>
 </thead>
 <tbody>
@@ -27,6 +28,8 @@ ${st.products
 <td> ${product.modelNo}  </td>
 <td> ${product.dateOfPurchase}  </td>
 <td> ${product.expiryDate}  </td>
+<td><a href=""><i class="fas fa-edit"></i></a></td>
+<td><a href=""><i class="fas fa-trash-alt"></i></a></td>
 </tr>
 `
   )
