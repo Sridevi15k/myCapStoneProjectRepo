@@ -81,6 +81,39 @@ function addProductListener() {
   }
 }
 
+function getProducts() {
+  return axios
+    .get(`http://localhost:3000/products/${state.User.uid}`, error => {
+      console.log("Error Saving Product:", error);
+    })
+    .then(response => {
+      state.Productlist.products = response.data;
+    });
+}
+
+function listenForSignIn(st) {
+  if (st.view === "Login") {
+    document.querySelector("form").addEventListener("submit", event => {
+      event.preventDefault();
+      // convert HTML elements to Array
+      let inputList = Array.from(event.target.elements);
+      // remove submit button from list
+      inputList.pop();
+      const inputs = inputList.map(input => input.value);
+      let email = inputs[0];
+      let password = inputs[1];
+      auth.signInWithEmailAndPassword(email, password).then(userRef => {
+        getUserFromDb(userRef.user.uid).then(() => {
+          getProducts().then(() => {
+            render(state.Productlist);
+            router.navigate("/Productlist");
+          });
+        });
+      });
+    });
+  }
+}
+
 function saveProductListener() {
   axios
     .post(
@@ -166,11 +199,23 @@ function listenForRegister(st) {
       let email = inputs[2];
       let password = inputs[3];
 
+      auth.signInWithEmailAndPassword(email, password).then(userRef => {
+        getUserFromDb(userRef.user.uid).then(() => {
+          getProducts().then(() => {
+            render(state.Productlist);
+            router.navigate("/Productlist");
+          });
+        });
+      });
+
       //create user in Firebase
       auth.createUserWithEmailAndPassword(email, password).then(response => {
-        addUserToStateAndDb(response.user.uid, firstName, lastName, email);
-        render(state.Productlist);
-        router.navigate("/Productlist");
+        addUserToStateAndDb(response.user.uid, firstName, lastName, email).then(
+          () => {
+            render(state.Productlist);
+            router.navigate("/Productlist");
+          }
+        );
       });
     });
   }
@@ -185,7 +230,8 @@ function addUserToStateAndDb(uid, first, last, email) {
   state.User.loggedIn = true;
 
   console.log("User Id:", uid);
-  db.collection("users")
+  return db
+    .collection("users")
     .doc(uid)
     .set({
       firstName: first,
@@ -193,29 +239,6 @@ function addUserToStateAndDb(uid, first, last, email) {
       email: email,
       signedIn: true
     });
-}
-
-function listenForSignIn(st) {
-  if (st.view === "Login") {
-    document.querySelector("form").addEventListener("submit", event => {
-      event.preventDefault();
-      // convert HTML elements to Array
-      let inputList = Array.from(event.target.elements);
-      // remove submit button from list
-      inputList.pop();
-      const inputs = inputList.map(input => input.value);
-      let email = inputs[0];
-      let password = inputs[1];
-      auth.signInWithEmailAndPassword(email, password).then(userRef => {
-        state.User.loggedIn = true;
-        getUserFromDb(userRef.user.uid).then(() => {
-          state.User.loggedIn = true;
-          render(state.Productlist);
-          router.navigate("/Productlist");
-        });
-      });
-    });
-  }
 }
 
 function getUserFromDb(uid) {
