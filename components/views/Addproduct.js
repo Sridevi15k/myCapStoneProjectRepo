@@ -38,7 +38,7 @@ export default () => `
    </div><br><br>
 
   <div class="button">
-  <button id="saveProduct" type="submit">Save</button>
+  <input id="saveProduct" type="submit" name="commit" value="Save">
   </div>
 </form>
 `;

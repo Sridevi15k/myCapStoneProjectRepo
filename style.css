@@ -34,7 +34,16 @@ UserNav > ul > li:hover {
 #logo {
   display: flex;
   -ms-flex-item-align: start;
+
 }
+.heading{
+  display: flex;
+  color: #3d405b;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin: -90px 0 0 1100px;
+
+}
+
 
 nav > ul {
   max-width: 900px;
