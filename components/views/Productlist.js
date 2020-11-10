@@ -7,7 +7,7 @@ export default st => `
 <h3>Product list</h3>
 </div>
 <div>
-<table>
+<table class="productlist">
 <thead>
 <tr>
 <th> Manufacturer </th>

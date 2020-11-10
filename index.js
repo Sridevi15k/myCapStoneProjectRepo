@@ -1,12 +1,8 @@
 import Navigo from "navigo";
 import { capitalize } from "lodash";
-// importing all as a Module object
-//import * as components from "./components";
 import * as state from "./store";
-// importing all by name
 import { Header, Nav, Main, Footer, UserNav } from "./components";
 import axios from "axios";
-import "./env";
 import { auth, db } from "./firebase";
 
 const router = new Navigo(window.location.origin);
