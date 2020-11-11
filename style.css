@@ -687,7 +687,7 @@ input[type="password"]:focus {
   margin: 5px;
   padding: 0 10px;
   color: #3d405b;
-  background: #f4f1de;
+  background: white;
   border: 1px solid;
   border-color: #3d405b #cdf1c3 #81b29a;
   border-radius: 2px;
@@ -704,7 +704,7 @@ input[type="password"]:focus {
   margin: 0 0 0 50px;
   padding: 0 10px;
   color: #3d405b;
-  background: #f4f1de;
+  background: white;
   border: 1px solid;
   border-color: #3d405b #cdf1c3 #81b29a;
   border-radius: 2px;
@@ -726,6 +726,7 @@ input[type="password"]:focus {
 #message textarea {
   width: 300px;
   display: inline-block;
+
 }
 #Faq {
   color: #3d405b;
