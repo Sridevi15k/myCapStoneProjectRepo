@@ -117,9 +117,13 @@ let cron = require("node-cron");
 cron.schedule("* * * * *", () => {
   console.log("Running Email task every minute");
   // checkAndSendMail();
+  let currDate = new Date();
+  let endDate = new Date();
+  endDate.setDate(endDate.getDate() + 14);
+
   let query = Product.find({
     reminderSent: false,
-    expiryDate: { $gte: new Date(), $lte: new Date("2020-11-25") }
+    expiryDate: { $gte: currDate, $lte: endDate }
   });
 
   query.exec(function(err, products) {
