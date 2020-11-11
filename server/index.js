@@ -96,20 +96,20 @@ This is to notify you that warranty for below product is about to expire in x da
 Manufacturer: ${product.manufacturer}
 Name: ${product.productName}
 Mode No: ${product.modelNo}
-Date of Purchase: ${product.purchaseDate}
+Date of Purchase: ${product.dateOfPurchase}
 Warranty expiry Date: ${product.expiryDate}
 
 Thanks,
 Warranty Reminder Team.`
   };
 
-  // transporter.sendMail(mailOptions, function(error, info) {
-  //   if (error) {
-  //     console.log(error);
-  //   } else {
-  //     console.log("Email sent: " + info.response);
-  //   }
-  // });
+  transporter.sendMail(mailOptions, function(error, info) {
+    if (error) {
+      console.log("Email failed: ", error);
+    } else {
+      console.log(`Email sent to ${user.email}. Response: `, info.response);
+    }
+  });
 }
 
 let cron = require("node-cron");
@@ -118,10 +118,8 @@ cron.schedule("* * * * *", () => {
   console.log("Running Email task every minute");
   // checkAndSendMail();
   let query = Product.find({
-    expiryDate: {
-      $gte: new Date(new Date().getDate() - 5),
-      $lt: new Date(new Date().getDate() - 5)
-    }
+    reminderSent: false,
+    expiryDate: { $gte: new Date(), $lte: new Date("2020-11-25") }
   });
 
   query.exec(function(err, products) {
