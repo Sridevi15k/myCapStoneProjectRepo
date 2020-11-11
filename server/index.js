@@ -49,4 +49,40 @@ app.get("/products/:uid", (req, res) => {
   });
 });
 
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'ssssnekkanti@gmail.com',
+    pass: '17151903'
+  }
+});
+
+var mailOptions = {
+  from: 'ssssnekkanti@gmail.com',
+  to: 'sridevi15k@gmail.com',
+  subject: 'Sending Email using Node.js',
+  text: 'That was easy!'
+};
+
+function checkAndSendMail() {
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+}
+
+
+var cron = require('node-cron');
+
+cron.schedule('* * * * *', () => {
+  console.log('running a task every minute');
+  // checkAndSendMail();
+});
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+
