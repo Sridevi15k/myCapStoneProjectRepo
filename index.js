@@ -26,7 +26,7 @@ function render(st = state.Home) {
 
   router.updatePageLinks();
 
-  listenForAuthChange();
+  // listenForAuthChange();
   addNavEventListeners();
   addSiteListeners(st);
   addProductListener();

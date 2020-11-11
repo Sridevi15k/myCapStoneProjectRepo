@@ -20,27 +20,21 @@ export default st => `
 </tr>
 </thead>
 <tbody>
-${
-  (() => {
-    if(st.products == " ") {
-      return st.products.map(product => `
-      <tr>
-      <td> ${product.manufacturer} </td>
-      <td> ${product.productName} </td>
-      <td> ${product.modelNo}  </td>
-      <td> ${product.dateOfPurchase}  </td>
-      <td> ${product.expiryDate}  </td>
-      <td><a href=""><i class="fas fa-edit"></i></a></td>
-      <td><a href=""><i class="fas fa-trash-alt"></i></a></td>
-      </tr>
-      `).join("")
-      } else {
-        return `<tr>
-        <td colspan=7>No Products</td>
-        </tr>`
-      }
-  })()
-}
+${st.products
+  .map(
+    product => `
+<tr>
+<td> ${product.manufacturer} </td>
+<td> ${product.productName} </td>
+<td> ${product.modelNo}  </td>
+<td> ${formatDate(product.dateOfPurchase)}  </td>
+<td> ${formatDate(product.expiryDate)}  </td>
+<td><a href="javascript://" onclick="editProduct('${product._id}')"><i class="fas fa-edit"></i></a></td>
+<td><a href="javascript://" onclick="deleteProduct('${product._id}')"><i class="fas fa-trash-alt"></i></a></td>
+</tr>
+`
+  )
+  .join("")}
 </tbody>
 </table>
 </div>

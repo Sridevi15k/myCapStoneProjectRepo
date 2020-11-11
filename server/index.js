@@ -11,10 +11,29 @@ const cors = require("cors");
 app.use(cors()); //implements the cors package middleware
 app.use(express.json()); //You have to use this to get the body through your requests, otherwise it won't be available
 app.use(bodyParser.json());
+
+let userMap = new Map();
+const fb = require("firebase-admin");
+const serviceAccount = require("./serviceAccountKey.json");
+//initialize admin SDK using serciceAcountKey
+fb.initializeApp({
+  credential: fb.credential.cert(serviceAccount)
+});
+const fs = fb.firestore();
+fs.collection("users")
+  .get()
+  .then(snapshot =>
+    snapshot.forEach(doc => {
+      userMap.set(doc.id, {
+        firstName: doc.data().firstName,
+        email: doc.data().email
+      });
+    })
+  );
+
 const port = process.env.PORT || 3000;
 
 let db_status = "MongoDB connection not successful.";
-
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => (db_status = "Successfully opened connection to Mongo!"));
 
@@ -25,6 +44,7 @@ const productSchema = new mongoose.Schema({
   modelNo: String,
   dateOfPurchase: Date,
   expiryDate: Date,
+  reminderSent: { type: Boolean, default: false },
   photo: String,
   createDateTime: { type: Date, default: Date.now() }
 });
@@ -61,28 +81,58 @@ var transporter = nodemailer.createTransport({
   }
 });
 
-var mailOptions = {
-  from: process.env.REMINDER_EMAIL_FROM,
-  to: process.env.REMINDER_EMAIL_TO,
-  subject: "Sending Email using Node.js",
-  text: "That was easy!"
-};
+function sendMail(product) {
+  let user = userMap.get(product.uid);
 
-function checkAndSendMail() {
-  transporter.sendMail(mailOptions, function(error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("Email sent: " + info.response);
-    }
-  });
+  let mailOptions = {
+    from: process.env.REMINDER_EMAIL_FROM,
+    to: user.email,
+    subject: `Warranty Expiry Reminder: ${product.productName}`,
+    text: `
+Hi ${user.firstName},
+
+This is to notify you that warranty for below product is about to expire in x days.
+
+Manufacturer: ${product.manufacturer}
+Name: ${product.productName}
+Mode No: ${product.modelNo}
+Date of Purchase: ${product.purchaseDate}
+Warranty expiry Date: ${product.expiryDate}
+
+Thanks,
+Warranty Reminder Team.`
+  };
+
+  // transporter.sendMail(mailOptions, function(error, info) {
+  //   if (error) {
+  //     console.log(error);
+  //   } else {
+  //     console.log("Email sent: " + info.response);
+  //   }
+  // });
 }
 
-var cron = require("node-cron");
+let cron = require("node-cron");
 
 cron.schedule("* * * * *", () => {
-  console.log("running a task every minute");
-  checkAndSendMail();
+  console.log("Running Email task every minute");
+  // checkAndSendMail();
+  let query = Product.find({
+    expiryDate: {
+      $gte: new Date(new Date().getDate() - 5),
+      $lt: new Date(new Date().getDate() - 5)
+    }
+  });
+
+  query.exec(function(err, products) {
+    if (err) {
+      console.log("Error");
+    }
+    products.forEach(product => {
+      console.log("Product:", product);
+      sendMail(product);
+    });
+  });
 });
 
-app.listen(port, () => console.log(`Example app listening on port  ${port}!`));
+app.listen(port, () => console.log(`App listening on port  ${port}!`));
