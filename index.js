@@ -144,6 +144,7 @@ function listenForSignIn(st) {
       let password = inputs[1];
       auth.signInWithEmailAndPassword(email, password).then(userRef => {
         getUserFromDb(userRef.user.uid).then(() => {
+          updateUserSignInState(userRef.user.uid, true);
           getProducts().then(() => {
             render(state.Productlist);
             router.navigate("/Productlist");
@@ -164,10 +165,8 @@ function addLogInAndOutListener(user) {
         // log out functionality
         auth.signOut().then(() => {
           console.log("user logged out");
-          logOutUserInDb(user.email);
+          updateUserSignInState(state.User.uid, false);
           resetUserInState();
-          //update user in database
-          db.collection("users").get;
           render(state.Home);
           router.navigate("/Home");
         });
@@ -178,20 +177,10 @@ function addLogInAndOutListener(user) {
   }
 }
 
-function logOutUserInDb(email) {
-  if (state.loggedIn) {
-    db.collection("users")
-      .get()
-      .then(snapshot =>
-        snapshot.docs.forEach(doc => {
-          if (email === doc.data().email) {
-            let id = doc.id;
-            db.collection("users")
-              .doc(id)
-              .update({ signedIn: false });
-          }
-        })
-      );
+function updateUserSignInState(uid, signedIn) {
+  if (state.User.loggedIn) {
+    db.collection("users").doc(uid)
+      .update({signedIn: signedIn});
     console.log("user signed out in db");
   }
 }
@@ -282,5 +271,3 @@ function getUserFromDb(uid) {
       console.log("Error getting document:", error);
     });
 }
-
-
