@@ -701,7 +701,7 @@ input[type="password"]:focus {
   box-sizing: border-box;
   border: 1px solid #3d405b;
   height: 15vh;
-  margin: 0 0 0 50px;
+  margin: 0 0 0 160px;
   padding: 0 10px;
   color: #3d405b;
   background: white;
@@ -726,7 +726,6 @@ input[type="password"]:focus {
 #message textarea {
   width: 300px;
   display: inline-block;
-
 }
 #Faq {
   color: #3d405b;
