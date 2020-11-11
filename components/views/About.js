@@ -1,6 +1,7 @@
 export default () => `
 <section id="about">
     <h2>About Us</h2>
+    <hr>
     <body>
     <div><img class="about-image" src="https://github.com/Sridevi15k/myCapStoneProjectRepo/blob/master/Docs/WebsiteImages/Warranty%20image%20pc%20with%20ticks.jpg?raw=true" height=300px width= 350px alt="About Us"></div>
     <div>
