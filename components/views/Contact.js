@@ -7,7 +7,7 @@ export default () => `
     <label for="full-name">Full Name</label>
     <input type="text" name="name" id="full-name" placeholder="First and Last" required=""><br><br>
     <label for="email-address">Email Address</label>
-    <input type="email" name="_replyto" id="email-address" placeholder="email address" required=""><br>
+    <input type="email" name="_replyto" id="email-address" placeholder="email address" required=""><br><br>
     <label  for="message">Message</label><br><br>
     <textarea class="messagebox" rows="5" name="message" id="message" placeholder="Your message here" required=""></textarea><br><br>
     <input type="hidden" name="_subject" id="email-subject" value="Contact Form Submission">
