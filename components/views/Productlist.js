@@ -1,3 +1,4 @@
+var format = require('date-format');
 export default st => `
 <section id="producttable">
 <div>
@@ -26,10 +27,10 @@ ${st.products
 <td> ${product.manufacturer} </td>
 <td> ${product.productName} </td>
 <td> ${product.modelNo}  </td>
-<td> ${product.dateOfPurchase}  </td>
-<td> ${product.expiryDate}  </td>
-<td><a href=""><i class="fas fa-edit"></i></a></td>
-<td><a href=""><i class="fas fa-trash-alt"></i></a></td>
+<td> ${formatDate(product.dateOfPurchase)}  </td>
+<td> ${formatDate(product.expiryDate)}  </td>
+<td><a href="javascript://" onclick="editProduct('${product._id}')"><i class="fas fa-edit"></i></a></td>
+<td><a href="javascript://" onclick="deleteProduct('${product._id}')"><i class="fas fa-trash-alt"></i></a></td>
 </tr>
 `
   )
@@ -39,3 +40,15 @@ ${st.products
 </div>
 </section>
 `;
+
+function formatDate(date) {
+  let d = new Date(date),
+    month = "" + (d.getMonth() + 1),
+    day = "" + d.getDate(),
+    year = d.getFullYear();
+
+  if (month.length < 2) month = "0" + month;
+  if (day.length < 2) day = "0" + day;
+
+  return [month, day, year].join("-");
+}

@@ -117,6 +117,10 @@ function addSaveProductListener() {
   });
 }
 
+function deleteProduct() {
+  console.log("deleted");
+}
+
 function getProducts() {
   return axios
     .get(`http://localhost:3000/products/${state.User.uid}`, error => {
