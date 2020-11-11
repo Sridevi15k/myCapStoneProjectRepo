@@ -1,10 +1,12 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/test");
+mongoose.connect(process.env.MONGO_DB_URL);
 const bodyParser = require("body-parser");
 const db = mongoose.connection;
 const cors = require("cors");
+
 // const pool = require("./db");
 app.use(cors()); //implements the cors package middleware
 app.use(express.json()); //You have to use this to get the body through your requests, otherwise it won't be available
@@ -54,16 +56,16 @@ var nodemailer = require("nodemailer");
 var transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "",
-    pass: ""
+    user: process.env.REMINDER_EMAIL_UID,
+    pass: process.env.REMINDER_EMAIL_PWD
   }
 });
 
 var mailOptions = {
-  from: "",
-  to: "",
+  from: process.env.REMINDER_EMAIL_FROM,
+  to: process.env.REMINDER_EMAIL_TO,
   subject: "Sending Email using Node.js",
-  text: "That was easy!",
+  text: "That was easy!"
 };
 
 function checkAndSendMail() {
@@ -80,7 +82,7 @@ var cron = require("node-cron");
 
 cron.schedule("* * * * *", () => {
   console.log("running a task every minute");
-  // checkAndSendMail();
+  checkAndSendMail();
 });
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () => console.log(`Example app listening on port  ${port}!`));
