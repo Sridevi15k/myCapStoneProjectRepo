@@ -35,13 +35,13 @@ UserNav > ul > li:hover {
   display: flex;
   -ms-flex-item-align: start;
 }
-.heading{
+.heading {
   display: flex;
   color: #3d405b;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   margin: -90px 0 0 1100px;
 }
-
 
 nav > ul {
   max-width: 900px;
@@ -201,18 +201,6 @@ nav .active {
   background-color: #cdf1c3;
 }
 
-#Contact {
-  color: #3d405b;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bolder;
-  font-style: italic;
-  font-size: medium;
-  max-width: 900px;
-  margin: 20px auto 0 auto;
-  padding: 30px;
-  background-color: #cdf1c3;
-}
-
 /* @media (min-width: 900px)
 .image {
   display: flex;
@@ -267,20 +255,19 @@ input[type="password"] {
   outline: 5px solid #f4f1de;
   -moz-outline-radius: 3px;
   -webkit-box-shadow: inset 0 1px 3px #3d405b(0, 0, 0, 0.12);
-   box-shadow: inset 0 1px 3px #3d405b(0, 0, 0, 0.12);
+  box-shadow: inset 0 1px 3px #3d405b(0, 0, 0, 0.12);
 }
 
- #signup input[type="text"]:focus input[type="password"]:focus {
+#signup input[type="text"]:focus input[type="password"]:focus {
   background-color: #cdf1c3;
   outline: none;
 }
 
 /* Overwrite default styles of hr */
 hr {
-  border: 1px solid #f4f1de;
-  margin-bottom: 25px;
+  border: 2px solid #e07a5f #3d405b #81b29a;
+  margin-bottom: 20px;
 }
-
 /* Set a style for the submit button */
 .signupbtn:hover {
   opacity: 1;
@@ -296,17 +283,17 @@ hr {
   opacity: 0.9;
 }
 #signup label {
-    /* Uniform size & alignment */
-    display: inline-block;
-    width: 160px;
-    text-align: right;
-  }
-  #signup input  {
+  /* Uniform size & alignment */
+  display: inline-block;
+  width: 160px;
+  text-align: right;
+}
+#signup input {
   /* Uniform text field size */
-    width: 300px;
-    box-sizing: border-box;
-    border: 1px solid #999;
-  }
+  width: 300px;
+  box-sizing: border-box;
+  border: 1px solid #999;
+}
 
 /* .container #signup {
   background-color: #f4f1de;
@@ -561,8 +548,8 @@ input[type="password"]:focus {
   text-align: right;
   color: #3d405b;
 }
-#product-box input  {
-/* Uniform text field size */
+#product-box input {
+  /* Uniform text field size */
   width: 300px;
   box-sizing: border-box;
   border: 1px solid #999;
@@ -611,7 +598,7 @@ input[type="password"]:focus {
   -webkit-box-shadow: inset 0 1px 3px #3d405b(0, 0, 0, 0.12);
   box-shadow: inset 0 1px 3px #3d405b(0, 0, 0, 0.12);
 }
-.productlist{
+.productlist {
   color: #000000;
 }
 
@@ -639,19 +626,130 @@ input[type="password"]:focus {
   width: 100%;
 }
 
-#customers td, #customers th {
+#customers td,
+#customers th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-#customers tr:nth-child(even){background-color: #f2f2f2;}
+#customers tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 
-#customers tr:hover {background-color: #ddd;}
+#customers tr:hover {
+  background-color: #ddd;
+}
 
 #customers th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
+}
+
+#Contact {
+  color: #3d405b;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+  font-style: italic;
+  font-size: medium;
+  max-width: 900px;
+  margin: 20px auto 0 auto;
+  padding: 30px;
+  background-color: #cdf1c3;
+  height: 110vh;
+}
+#formspree {
+  padding: 30px;
+  background-color: #cdf1c3;
+  height: 60vh;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #cdf1c3;
+  color: #3d405b;
+  max-width: 700px;
+  margin: 0 auto 0 30px;
+  font-weight: bold;
+}
+#formspree label {
+  /* Uniform size & alignment */
+  display: inline-block;
+  width: 150px;
+  text-align: left;
+  color: #3d405b;
+}
+#formspree input {
+  /* Uniform text field size */
+  width: 300px;
+  box-sizing: border-box;
+  border: 3px solid #3d405b;
+  height: 33px;
+  margin: 5px;
+  padding: 0 10px;
+  color: #3d405b;
+  background: #f4f1de;
+  border: 1px solid;
+  border-color: #3d405b #cdf1c3 #81b29a;
+  border-radius: 2px;
+  outline: 5px solid #f4f1de;
+  -moz-outline-radius: 3px;
+  -webkit-box-shadow: inset 0 1px 3px #3d405b(0, 0, 0, 0.12);
+  box-shadow: inset 0 1px 3px #3d405b(0, 0, 0, 0.12);
+}
+.messagebox {
+  width: 300px;
+  box-sizing: border-box;
+  border: 1px solid #3d405b;
+  height: 15vh;
+  margin: 0 0 0 50px;
+  padding: 0 10px;
+  color: #3d405b;
+  background: #f4f1de;
+  border: 1px solid;
+  border-color: #3d405b #cdf1c3 #81b29a;
+  border-radius: 2px;
+  outline: 5px solid #f4f1de;
+  -moz-outline-radius: 3px;
+  -webkit-box-shadow: inset 0 1px 3px #3d405b(0, 0, 0, 0.12);
+  box-shadow: inset 0 1px 3px #3d405b(0, 0, 0, 0.12);
+}
+
+#formspree {
+  box-sizing: border-box;
+}
+.messagebox {
+  /* Uniform size & alignment */
+  display: inline-block;
+  text-align: left;
+  color: #3d405b;
+}
+#message textarea {
+  width: 300px;
+  display: inline-block;
+}
+#Faq {
+  color: #3d405b;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: medium;
+  margin: 0 auto 150px auto;
+  padding: 30px;
+  background-color: #cdf1c3;
+  max-width: 900px;
+  box-sizing: border-box;
+  flex-basis: 30%;
+  height: 60vh;
+}
+@media (min-width: 900px) {
+  #Faq {
+    display: flex;
+    flex-direction: inherit;
+  }
+}
+#Faqs h3 {
+  font-weight: bold;
+  font-size: large;
+}
+.bulb {
+  margin: -230px 0 100px 425px;
 }

@@ -4,6 +4,7 @@ export default () => `
     <div class="footer-container">
     <div class="option">
       <h4>Round the clock! We make it easy for you!</h4>
+      <hr>
       <p> Warranty Reminder makes your life easier by letting you access your receipts/documents from anywhere. Email notifications every week before 4 weeks of expiry.
       </p>
     </div>

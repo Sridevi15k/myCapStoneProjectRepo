@@ -2,6 +2,7 @@ export default () => `
 <section id="login-form">
 <div>
 <div><h3>Login</h3></div>
+<hr>
 <form id="" method="POST" action="">
 <div class="login">
 <form method="post" action="">

@@ -2,6 +2,7 @@ export default () => `
 <section id="features">
 <div>
 <div> <h3 class="feature-header" > Features <h3></div>
+<hr>
 <div> <h4 class="feature-header" > Need to know <h4>
 <ul>
 <li> Simple, cheap and easy to use. </li>
