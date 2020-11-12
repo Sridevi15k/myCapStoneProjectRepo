@@ -21,11 +21,11 @@ export default () => `
     <option id="chrysler" value="chrysler">Chrysler</option>
     <option id="volkswagen" value="Volkswagen">Volkswagen</option>
     <option id="jeep" value="Jeep">Jeep</option>
-      </select> <br>
+      </select> <br><br>
       <select id="model" name="model">
             <option id="selectmodel" value="Select Model">Select Model</option>
         </select>
-        <br>
+        <br><br>
         <input type="submit" value="Select" id="select">
 
   </div>
