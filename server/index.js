@@ -91,7 +91,7 @@ function sendMail(product) {
     text: `
 Hi ${user.firstName},
 
-This is to notify you that warranty for below product is about to expire in x days.
+This is to notify you that warranty for below product is about to expire.
 
 Manufacturer: ${product.manufacturer}
 Name: ${product.productName}
