@@ -108,6 +108,12 @@ Warranty Reminder Team.`
       console.log("Email failed: ", error);
     } else {
       console.log(`Email sent to ${user.email}. Response: `, info.response);
+      var myQuery = { _id: product._id };
+      var newValues = { $set: { reminderSent: true } };
+
+      Product.updateOne(myQuery, newValues, function(err) {
+        if (err) throw err;
+      });
     }
   });
 }
